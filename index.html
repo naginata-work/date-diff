@@ -55,7 +55,25 @@
     <button class="copy-btn" id="copyBtn"></button>
   </div>
 
+  <div class="card" style="font-size:13px; line-height:1.9; color:var(--sub);">
+    <h2 id="aboutTitle" style="font-size:15px; color:var(--text); margin:0 0 8px;"></h2>
+    <p id="aboutBody1" style="margin:0 0 10px;"></p>
+    <p id="aboutBody2" style="margin:0;"></p>
+  </div>
+
+  <div class="card" style="font-size:13px; line-height:1.9; color:var(--sub);">
+    <h2 id="faqTitle" style="font-size:15px; color:var(--text); margin:0 0 10px;"></h2>
+    <p id="faq1Q" style="margin:0 0 4px; color:var(--text); font-weight:bold;"></p>
+    <p id="faq1A" style="margin:0 0 12px;"></p>
+    <p id="faq2Q" style="margin:0 0 4px; color:var(--text); font-weight:bold;"></p>
+    <p id="faq2A" style="margin:0;"></p>
+  </div>
+
   <p class="footer-links" id="footerLinks"></p>
+  <p style="text-align:center; font-size:11px; color:var(--sub); margin-top:4px;">
+    <a href="https://naginata-work.github.io/" style="color:var(--sub);" id="allToolsLink"></a> ・
+    <a href="https://naginata-work.github.io/privacy.html" style="color:var(--sub);" id="privacyLink"></a>
+  </p>
 </div>
 
 <script>
@@ -71,7 +89,15 @@
       copyBtn: '結果をコピー',
       copied: 'コピーしました!',
       needDates: '両方の日付を入力してください',
-      footerLinks: '他のツールも作っています → <a href="https://naginata-work.github.io/countdown/" target="_blank" rel="noopener">カウントダウン</a> / <a href="https://naginata-work.github.io/percent-calc/" target="_blank" rel="noopener">パーセント計算機</a>'
+      footerLinks: '他のツールも作っています → <a href="https://naginata-work.github.io/countdown/" target="_blank" rel="noopener">カウントダウン</a> / <a href="https://naginata-work.github.io/percent-calc/" target="_blank" rel="noopener">パーセント計算機</a>',
+      aboutTitle: 'カウントダウンとの違い',
+      aboutBody1: '「入社して何年何ヶ月になるか」「契約開始日から何日経ったか」など、未来の予定ではなく過去や任意の2つの日付の間を知りたい場面もあります。このツールはcountdown(未来のイベントをリアルタイムで数え続けるツール)とは違い、任意の2つの日付を一度だけ正確に計算する用途です。',
+      aboutBody2: '2つの日付を入力すると、年・月・日の正確な内訳と、合計日数・週数がまとめて表示されます。月の途中をまたぐ場合や、うるう年をまたぐ場合でも、実際のカレンダーに基づいて正確に計算します。',
+      faqTitle: 'よくある質問',
+      faq1Q: 'なぜ単純に「日数÷365」で年数を出さないの?',
+      faq1A: 'うるう年や月ごとの日数の違い(28〜31日)があるため、単純な割り算では実際の年月日とずれてしまいます。このツールはカレンダー通りに月を1つずつ数えて計算しているため、正確な年月日が得られます。',
+      faq2Q: '日付1と日付2はどちらが先でもいい?',
+      faq2A: 'はい。前後どちらの順番で入力しても、内部で自動的に古い方・新しい方を判定して計算するため、結果は変わりません。',
     },
     en: {
       title: '📅 Date Difference Calculator',
@@ -84,7 +110,15 @@
       copyBtn: 'Copy result',
       copied: 'Copied!',
       needDates: 'Please choose both dates',
-      footerLinks: 'Also made these → <a href="https://naginata-work.github.io/countdown/" target="_blank" rel="noopener">Countdown Timer</a> / <a href="https://naginata-work.github.io/percent-calc/" target="_blank" rel="noopener">Percentage Calculator</a>'
+      footerLinks: 'Also made these → <a href="https://naginata-work.github.io/countdown/" target="_blank" rel="noopener">Countdown Timer</a> / <a href="https://naginata-work.github.io/percent-calc/" target="_blank" rel="noopener">Percentage Calculator</a>',
+      aboutTitle: 'How this differs from the Countdown Timer',
+      aboutBody1: "Sometimes you need the gap between two dates that aren't a future event — how long you've worked somewhere, or how many days since a contract started. Unlike the Countdown Timer, which live-counts down to one future date, this tool does a one-time, precise calculation between any two dates you choose.",
+      aboutBody2: "Enter two dates and get an exact years/months/days breakdown, plus the total days and weeks. It correctly handles month-end edge cases and leap years by counting through the actual calendar rather than dividing by an average.",
+      faqTitle: 'FAQ',
+      faq1Q: "Why not just divide total days by 365 to get the year count?",
+      faq1A: "Because leap years and months of different lengths (28 to 31 days) throw that off. This tool steps through the calendar month by month instead, so the years/months/days breakdown stays accurate.",
+      faq2Q: 'Does it matter which date goes in Date 1 vs. Date 2?',
+      faq2A: "No — the tool automatically figures out which date is earlier internally, so the result is the same either way.",
     }
   };
 
@@ -162,6 +196,18 @@
     document.getElementById('date2Label').textContent = t().date2Label;
     document.getElementById('copyBtn').textContent = t().copyBtn;
     document.getElementById('footerLinks').innerHTML = t().footerLinks;
+    document.getElementById('aboutTitle').textContent = t().aboutTitle;
+    document.getElementById('aboutBody1').textContent = t().aboutBody1;
+    document.getElementById('aboutBody2').textContent = t().aboutBody2;
+    document.getElementById('faqTitle').textContent = t().faqTitle;
+    document.getElementById('faq1Q').textContent = t().faq1Q;
+    document.getElementById('faq1A').textContent = t().faq1A;
+    document.getElementById('faq2Q').textContent = t().faq2Q;
+    document.getElementById('faq2A').textContent = t().faq2A;
+    document.getElementById('allToolsLink').textContent = lang === 'ja' ? '他のツール一覧' : 'All tools';
+    document.getElementById('allToolsLink').href = 'https://naginata-work.github.io/';
+    document.getElementById('privacyLink').textContent = lang === 'ja' ? 'プライバシーポリシー' : 'Privacy policy';
+    document.getElementById('privacyLink').href = 'https://naginata-work.github.io/privacy.html';
     calc();
   }
 
